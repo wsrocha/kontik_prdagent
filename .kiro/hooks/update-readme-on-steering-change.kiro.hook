@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Atualizar README ao editar Steering",
+  "description": "Quando um steering file em .kiro/steering/ for editado, avalia se a mudança tem impacto significativo no README.md e o atualiza se necessário.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      ".kiro/steering/*.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Um steering file em .kiro/steering/ foi editado. Leia o arquivo alterado e o README.md atual. Avalie se a mudança é significativa o suficiente para impactar o README (ex: nova responsabilidade, nova regra importante, arquivo que antes estava vazio agora tem conteúdo, mudança de escopo). Se sim, atualize apenas as seções relevantes do README.md de forma cirúrgica, sem reescrever o documento inteiro. Se a mudança for pequena ou apenas cosmética, não faça nada."
+  }
+}
