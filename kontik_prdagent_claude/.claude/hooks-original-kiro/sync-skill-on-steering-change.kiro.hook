@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Sincronizar SKILL ao criar/editar Steering",
+  "description": "Quando um steering file for criado ou editado em .kiro/steering/, avalia se o SKILL.md precisa refletir a mudança — seja adicionando um novo arquivo na tabela de steering files ativos, atualizando a descrição de um existente, ou criando um ponteiro em references/ se o conteúdo sobrepõe uma referência já existente.",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": [
+      ".kiro/steering/*.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Um steering file em .kiro/steering/ foi criado ou editado. Faça o seguinte:\n\n1. Leia o arquivo alterado/criado e o SKILL.md atual em .kiro/skills/prd-writing/SKILL.md\n2. Verifique se o steering file já está listado na tabela \"Steering Files ativos\" do SKILL.md\n3. Se for um arquivo NOVO: adicione-o na tabela com nome, caminho e responsabilidade resumida\n4. Se for uma EDIÇÃO com mudança de escopo ou responsabilidade: atualize a descrição na tabela\n5. Verifique se o conteúdo do steering sobrepõe algum arquivo em .kiro/skills/prd-writing/references/ — se sim, converta o arquivo de referência em ponteiro usando #[[file:caminho-do-steering]]\n6. Faça apenas alterações cirúrgicas no SKILL.md, sem reescrever o documento inteiro"
+  }
+}

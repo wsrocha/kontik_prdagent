@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Atualizar README ao criar arquivo",
+  "description": "Quando um novo arquivo .md for criado na raiz do workspace (ex: novo PRD), avalia se o README.md precisa ser atualizado para refletir a existência do novo arquivo.",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": [
+      "*.md",
+      ".kiro/steering/*.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Um novo arquivo foi criado no workspace. Leia o arquivo criado e o README.md atual. Avalie se o novo arquivo tem impacto significativo no README (ex: novo PRD de exemplo, novo steering file, novo guia). Se sim, atualize apenas as seções relevantes do README.md de forma cirúrgica — por exemplo, adicionando o arquivo na estrutura do repositório ou na tabela de steering files. Não reescreva o documento inteiro. Se o arquivo não tiver relevância para o README, não faça nada."
+  }
+}

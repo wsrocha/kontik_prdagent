@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Sincronizar prd-to-epics-features ao editar Steering normativo",
+  "description": "Quando o steering epics-features-orchestrator.md for criado ou editado, avalia se o SKILL.md da skill prd-to-epics-features precisa refletir a mudança — seja atualizando a tabela de steering files ativos, a descrição de uma referência, ou adicionando um ponteiro em references/ se o conteúdo sobrepõe uma referência existente.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      ".kiro/steering/epics-features-orchestrator.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "O steering file .kiro/steering/epics-features-orchestrator.md foi editado.\n\nFaça o seguinte:\n\n1. Leia o arquivo editado e o SKILL.md atual em .kiro/skills/prd-to-epics-features/SKILL.md\n2. Verifique se houve mudança de escopo, hierarquia, entradas mínimas ou critérios de qualidade no steering\n3. Se houve mudança relevante:\n   a. Atualize a seção 'Steering Files ativos' do SKILL.md com a descrição atualizada\n   b. Se a mudança afeta o fluxo (ex: nova fase, novo campo obrigatório), atualize a fase correspondente no SKILL.md\n   c. Se há novo arquivo de referência mencionado no steering, adicione à tabela 'Referências Operacionais' do SKILL.md\n4. Se o conteúdo do steering sobrepõe algum arquivo em .kiro/skills/prd-to-epics-features/references/, converta o arquivo de referência em ponteiro usando #[[file:caminho-do-steering]]\n5. Faça apenas alterações cirúrgicas — não reescrever o SKILL.md inteiro\n6. Informe quais seções foram atualizadas e por quê"
+  }
+}
